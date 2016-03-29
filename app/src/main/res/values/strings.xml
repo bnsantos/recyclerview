@@ -1,3 +1,57 @@
 <resources>
   <string name="app_name">RecyclerView</string>
+  <array name="urls">
+    <item>http://24.media.tumblr.com/tumblr_m0ljiiZ08O1r7plk4o1_500.jpg</item>
+    <item>http://25.media.tumblr.com/tumblr_maw3chGwF31qhwmnpo1_1280.jpg</item>
+    <item>http://24.media.tumblr.com/tumblr_m4mnvamXq41r6jd7fo1_500.jpg</item>
+    <item>http://24.media.tumblr.com/tumblr_m242stMiEd1qbhms5o1_500.jpg</item>
+    <item>http://25.media.tumblr.com/tumblr_m498iion3l1qzuix4o1_1280.jpg</item>
+    <item>http://25.media.tumblr.com/tumblr_ldq6a9VDBq1qbd47zo1_400.jpg</item>
+    <item>http://27.media.tumblr.com/tumblr_lrd09pcM1f1qdt23mo1_250.gif</item>
+    <item>http://25.media.tumblr.com/Jjkybd3nSk6rj9fm76MNUYuuo1_500.jpg</item>
+    <item>http://25.media.tumblr.com/tumblr_lp8c34J98i1qz7cz6o1_1280.jpg</item>
+    <item>http://25.media.tumblr.com/tumblr_lzz9u9z2fY1qafc06o1_500.jpg</item>
+    <item>http://24.media.tumblr.com/tumblr_lnrncr3zfM1qbe5pxo1_1280.jpg</item>
+    <item>http://24.media.tumblr.com/tumblr_m1x684QlTP1qzkl9go1_1280.jpg</item>
+    <item>http://24.media.tumblr.com/tumblr_m3riofEOlF1qd477zo1_1280.jpg</item>
+    <item>http://25.media.tumblr.com/tumblr_m6v0t66uVj1qh66wqo1_1280.jpg</item>
+    <item>http://24.media.tumblr.com/tumblr_m4ljm9e5EX1r2h6ioo1_500.jpg</item>
+    <item>http://25.media.tumblr.com/tumblr_lg1hiwdW5t1qfyzelo1_1280.jpg</item>
+    <item>http://25.media.tumblr.com/tumblr_lmq1ikW23T1qdth8zo1_250.jpg</item>
+    <item>http://25.media.tumblr.com/tumblr_m11xfqIXZG1qjev1to1_500.jpg</item>
+    <item>http://24.media.tumblr.com/tumblr_m22vwnjqaj1qzzzl7o1_1280.jpg</item>
+    <item>http://25.media.tumblr.com/0b54i4Yxspvgwqv6ZUCJOZtLo1_500.jpg</item>
+    <item>http://25.media.tumblr.com/tumblr_m4rm1gUBjf1qd477zo1_1280.jpg</item>
+    <item>http://25.media.tumblr.com/tumblr_lh6zseL1Mu1qfyzelo1_1280.jpg</item>
+    <item>http://25.media.tumblr.com/tumblr_lzqczgFnxO1qdlh1io1_500.gif</item>
+    <item>http://25.media.tumblr.com/tumblr_lgruw26wRx1qgnva2o1_500.jpg</item>
+    <item>http://25.media.tumblr.com/tumblr_lh2d64EHyh1qgnva2o1_500.jpg</item>
+    <item>http://25.media.tumblr.com/tumblr_m3itay2f7V1qbzrruo1_1280.jpg</item>
+    <item>http://25.media.tumblr.com/tumblr_m2810yKMjT1qbe5pxo1_1280.jpg</item>
+    <item>http://25.media.tumblr.com/tumblr_liygmntKx41qdvbl3o1_1280.jpg</item>
+    <item>http://25.media.tumblr.com/tumblr_m5ug75DZok1qb406fo1_1280.jpg</item>
+    <item>http://25.media.tumblr.com/tumblr_m4rlzxfgzg1qd477zo1_1280.jpg</item>
+    <item>http://25.media.tumblr.com/tumblr_m3x6uq2HHw1qzxrxso1_1280.jpg</item>
+    <item>http://25.media.tumblr.com/tumblr_lx7aremQVL1qb7j67o1_1280.jpg</item>
+    <item>http://29.media.tumblr.com/qgIb8tERiqzd4dad8mdzEy9ho1_500.jpg</item>
+    <item>http://25.media.tumblr.com/tumblr_m2u72wnvk11qhwmnpo1_1280.jpg</item>
+    <item>http://25.media.tumblr.com/tumblr_lrscv7wo221qi23vmo1_500.jpg</item>
+    <item>http://24.media.tumblr.com/tumblr_m2sv2mVc9H1r73wdao1_500.jpg</item>
+    <item>http://25.media.tumblr.com/tumblr_m2k4cilirf1rrqglzo1_500.gif</item>
+    <item>http://27.media.tumblr.com/tumblr_m3080vGkfd1qdd1dzo1_1280.jpg</item>
+    <item>http://24.media.tumblr.com/tumblr_m2mx4bcw5X1rrk6bho1_1280.jpg</item>
+    <item>http://25.media.tumblr.com/tumblr_lkhld6EtiV1qg20muo1_500.gif</item>
+    <item>http://25.media.tumblr.com/tumblr_lqev1i8MJ11r0mqk2o1_500.jpg</item>
+    <item>http://25.media.tumblr.com/tumblr_m1ujh793Ri1r6b7kmo1_500.jpg</item>
+    <item>http://29.media.tumblr.com/tumblr_lqrek5Vb621qajnw8o1_500.jpg</item>
+    <item>http://25.media.tumblr.com/tumblr_lgqgyk17BM1qfyzelo1_1280.jpg</item>
+    <item>http://29.media.tumblr.com/tumblr_ll6oob7EY01qjahcpo1_1280.jpg</item>
+    <item>http://29.media.tumblr.com/tumblr_m387ueyMuY1qhwmnpo1_1280.jpg</item>
+    <item>http://25.media.tumblr.com/tumblr_m204ebsERe1qze0hyo1_400.jpg</item>
+    <item>http://25.media.tumblr.com/tumblr_m24l7aeure1qafc06o1_500.jpg</item>
+    <item>http://24.media.tumblr.com/tumblr_mb2j498q8S1rv2d9yo1_500.jpg</item>
+    <item>http://25.media.tumblr.com/qgIb8tERiqb5249fqgwTK4RNo1_500.jpg</item>
+  </array>
+  <string name="title_activity_full_screen">FullScreenActivity</string>
+  <string name="title_activity_main2">Main2Activity</string>
 </resources>
