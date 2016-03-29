@@ -5,10 +5,13 @@ import android.content.res.Resources;
 import android.graphics.Point;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.view.ActionMode;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
 import android.view.Display;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.WindowManager;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -17,7 +20,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ImageAdapter.ClickListener{
   private RecyclerView recyclerView;
   private ImageAdapter adapter;
 
@@ -36,12 +39,8 @@ public class MainActivity extends AppCompatActivity {
     final float padding = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, gridPadding, r.getDisplayMetrics());
     int size= (int) ((getScreenWidth(this) - ((numColumns + 1) * padding)) / numColumns);
     recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
-    adapter = new ImageAdapter(generateRandomUrls(), size, new ImageAdapter.ImageListener() {
-      @Override
-      public void click(String url) {
-        FullScreenActivity.start(MainActivity.this, url);
-      }
-    });
+    adapter = new ImageAdapter(generateRandomUrls(), size, this);
+    adapter.setSelectable(true);
     recyclerView.setAdapter(adapter);
   }
 
@@ -63,6 +62,20 @@ public class MainActivity extends AppCompatActivity {
     }
     columnWidth = point.x;
     return columnWidth;
+  }
+
+  @Override
+  public void onBackPressed() {
+    if(adapter.isSelectionMode()){
+      adapter.clearSelection();
+    }else {
+      super.onBackPressed();
+    }
+  }
+
+  @Override
+  public void click(String url) {
+    FullScreenActivity.start(this, url);
   }
 }
 

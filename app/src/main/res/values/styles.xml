@@ -17,4 +17,8 @@
 
   <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
+  <style name="CheckableDraweeView_CheckableStyle">
+    <item name="android:foreground">?attr/selectableItemBackground</item>
+  </style>
+
 </resources>
