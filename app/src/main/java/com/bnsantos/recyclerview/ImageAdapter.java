@@ -4,14 +4,11 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.view.ActionMode;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
-
-import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.List;
 
@@ -79,7 +76,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageHolder>
     }else{
       selections.put(position, true);
     }
-    holder.contentLayout.setChecked(selections.get(position));
+    holder.view.setChecked(selections.get(position));
 
     notifyItemChanged(position);
   }
@@ -102,24 +99,23 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageHolder>
   }
 
   class ImageHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener{
-    private final SimpleDraweeView view;
-    private final CheckableFrameLayout contentLayout;
+    private final CheckableDraweeView view;
     private final HolderListener listener;
     private String url;
 
     public ImageHolder(View itemView, HolderListener listener) {
       super(itemView);
-      view = (SimpleDraweeView) itemView.findViewById(R.id.view);
-      contentLayout = (CheckableFrameLayout) itemView.findViewById(R.id.contentLayout);
+      view = (CheckableDraweeView) itemView.findViewById(R.id.view);
       view.setOnClickListener(this);
       view.setOnLongClickListener(this);
       this.listener = listener;
     }
 
-    public void bind(final boolean selected, final String url){
+    public void bind(final boolean checked, final String url){
       this.url = url;
+
       view.setImageURI(Uri.parse(url));
-      contentLayout.setChecked(selected);
+      view.setChecked(checked);
     }
 
     @Override

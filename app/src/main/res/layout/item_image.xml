@@ -1,21 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.bnsantos.recyclerview.CheckableDraweeView
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:fresco="http://schemas.android.com/apk/res-auto"
+  android:layout_margin="@dimen/margin"
+  android:id="@+id/view"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  android:layout_margin="@dimen/margin">
-  <com.facebook.drawee.view.SimpleDraweeView
-    xmlns:fresco="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="@dimen/margin"
-    android:id="@+id/view"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    fresco:placeholderImage="@android:color/darker_gray"
-    fresco:failureImage="@android:color/holo_red_dark"/>
-  <com.bnsantos.recyclerview.CheckableFrameLayout
-    android:id="@+id/contentLayout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:alpha="0.6"
-    android:background="@drawable/selector">
-  </com.bnsantos.recyclerview.CheckableFrameLayout>
-</FrameLayout>
+  fresco:placeholderImage="@android:color/darker_gray"
+  fresco:failureImage="@android:color/holo_red_dark"/>
