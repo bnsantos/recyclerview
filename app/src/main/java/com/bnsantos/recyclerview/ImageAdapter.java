@@ -6,10 +6,15 @@ import android.support.v7.view.ActionMode;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 
+import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,12 +25,43 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageHolder>
   private final int size;
   private final HolderListener viewHolderListener;
   private SparseBooleanArray selections = new SparseBooleanArray();
-  private ActionMode.Callback supportActionMode;
+  private final ActionMode.Callback supportActionMode;
   private boolean selectable;
+  private final WeakReference<ClickListener> listener;
 
-  public ImageAdapter(List<String> urls, int size, @NonNull final ClickListener listener){
+  public ImageAdapter(List<String> urls, int size, @NonNull final ClickListener activity){
     imageList = urls;
     this.size = size;
+    this.listener = new WeakReference<>(activity);
+
+    supportActionMode = new ActionMode.Callback() {
+      @Override
+      public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+        listener.get().getMenuInflater().inflate(R.menu.selection_menu, menu);
+        return true;
+      }
+
+      @Override
+      public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+        return true;
+      }
+
+      @Override
+      public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+        int itemId = item.getItemId();
+        if(itemId ==R.id.selecctAll){
+          selectAll();
+        }else if(itemId ==R.id.delete){
+          removeSelected();
+        }
+        return true;
+      }
+
+      @Override
+      public void onDestroyActionMode(ActionMode mode) {
+        clearSelection();
+      }
+    };
 
     this.viewHolderListener = new HolderListener() {
       @Override
@@ -33,7 +69,9 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageHolder>
         if(isSelectionMode()){
           toggleSelection(holder);
         }else{
-          listener.click(url);
+          if(listener.get()!=null) {
+            listener.get().click(url);
+          }
         }
       }
 
@@ -45,7 +83,9 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageHolder>
           if(selectable){
             toggleSelection(holder);
           }else{
-            listener.click(url);
+            if(listener.get()!=null) {
+              listener.get().click(url);
+            }
           }
         }
       }
@@ -74,10 +114,15 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageHolder>
     if(selections.get(position)){
       selections.delete(position);
     }else{
+      if(!isSelectionMode()){
+        if(listener.get()!=null) {
+          listener.get().setActionMode(supportActionMode);
+        }
+      }
       selections.put(position, true);
     }
     holder.view.setChecked(selections.get(position));
-
+    updateActionMode();
     notifyItemChanged(position);
   }
 
@@ -96,6 +141,39 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageHolder>
 
   public void setSelectable(boolean selectable) {
     this.selectable = selectable;
+  }
+
+  private void selectAll(){
+    selections.clear();
+    for(int i=0;i<imageList.size();i++){
+      selections.put(i, true);
+    }
+    notifyDataSetChanged();
+  }
+
+  private void removeSelected(){
+    int size = selections.size();
+    List<String> toRemove = new ArrayList<>(size);
+    for(int i = 0 ; i < size; i++ ){
+      int pos = selections.keyAt(i);
+      toRemove.add(imageList.get(pos));
+      notifyItemRemoved(pos);
+    }
+    imageList.removeAll(toRemove);
+    notifyItemRangeChanged(0, imageList.size());
+    clearSelection();
+    updateActionMode();
+  }
+
+  private void updateActionMode(){
+    if(listener.get()!=null) {
+      int size = selections.size();
+      if(size==0){
+        listener.get().finishActionMode();
+      }else{
+        listener.get().updateSelectionTitle(size);
+      }
+    }
   }
 
   class ImageHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener{
@@ -143,5 +221,9 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageHolder>
 
   public interface ClickListener {
     void click(String url);
+    void setActionMode(ActionMode.Callback callback);
+    MenuInflater getMenuInflater();
+    void updateSelectionTitle(int count);
+    void finishActionMode();
   }
 }

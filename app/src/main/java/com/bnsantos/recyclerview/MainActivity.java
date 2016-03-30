@@ -3,26 +3,25 @@ package com.bnsantos.recyclerview;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Point;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ActionMode;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
 import android.view.Display;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.WindowManager;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements ImageAdapter.ClickListener{
   private RecyclerView recyclerView;
   private ImageAdapter adapter;
+  private ActionMode actionMode;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +30,6 @@ public class MainActivity extends AppCompatActivity implements ImageAdapter.Clic
     setContentView(R.layout.activity_main);
 
     recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-
 
     Resources r = getResources();
     final int gridPadding = 10;
@@ -45,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements ImageAdapter.Clic
   }
 
   private List<String> generateRandomUrls(){
-    return Arrays.asList(getResources().getStringArray(R.array.urls));
+    return new LinkedList<>(Arrays.asList(getResources().getStringArray(R.array.urls)));
   }
 
   public static int getScreenWidth(Context context) {
@@ -76,6 +74,25 @@ public class MainActivity extends AppCompatActivity implements ImageAdapter.Clic
   @Override
   public void click(String url) {
     FullScreenActivity.start(this, url);
+  }
+
+  @Override
+  public void setActionMode(ActionMode.Callback callback) {
+    actionMode = startSupportActionMode(callback);
+  }
+
+  @Override
+  public void updateSelectionTitle(int count) {
+    if(actionMode!=null) {
+      actionMode.setTitle(getString(R.string.items_selected, count));
+    }
+  }
+
+  @Override
+  public void finishActionMode() {
+    if(actionMode!=null){
+      actionMode.finish();
+    }
   }
 }
 

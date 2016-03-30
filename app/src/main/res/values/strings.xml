@@ -53,5 +53,7 @@
     <item>http://25.media.tumblr.com/qgIb8tERiqb5249fqgwTK4RNo1_500.jpg</item>
   </array>
   <string name="title_activity_full_screen">FullScreenActivity</string>
-  <string name="title_activity_main2">Main2Activity</string>
+  <string name="delete">Delete</string>
+  <string name="items_selected">%d items selected</string>
+  <string name="select_all">Select all</string>
 </resources>
